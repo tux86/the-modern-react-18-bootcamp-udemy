@@ -1,6 +1,6 @@
 import Card, {Recipe} from "./Card.tsx";
 
-const recipes: Recipe[] = [
+export const recipes: Recipe[] = [
     {
         id: 1,
         name: "Poke Bowls",

@@ -1,3 +1,5 @@
+import {useNavigate} from "react-router-dom";
+
 export interface Recipe {
     id: number,
     image: string
@@ -10,12 +12,15 @@ interface CardProps {
     recipe: Recipe;
 }
 
-
 const Card: React.FC<CardProps> = ({ recipe }) => {
 
     const {id, image, name, tag, numberOfMinutes} = recipe
+    const navigate = useNavigate()
+    const navigateToRecipePage = () => {
+        navigate(`/recipe/${id}`)
+    }
     return (
-        <div className="card" key={id}>
+        <div className="card" key={id} onClick={navigateToRecipePage}>
             <img src={image} alt=""/>
             <div className="card-content">
                 <h3>{name}</h3>
