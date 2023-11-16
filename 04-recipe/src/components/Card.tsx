@@ -2,10 +2,12 @@ import {useNavigate} from "react-router-dom";
 
 export interface Recipe {
     id: number,
-    image: string
+    thumbnail_url: string
     name: string
-    tag: string
-    numberOfMinutes: number
+    topics: any[]
+    total_time_minutes: number,
+    nutrition: any,
+    instructions: any
 }
 
 interface CardProps {
@@ -14,22 +16,22 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ recipe }) => {
 
-    const {id, image, name, tag, numberOfMinutes} = recipe
+    const {id, thumbnail_url, name, topics, total_time_minutes} = recipe
     const navigate = useNavigate()
     const navigateToRecipePage = () => {
         navigate(`/recipe/${id}`)
     }
     return (
         <div className="card" key={id} onClick={navigateToRecipePage}>
-            <img src={image} alt=""/>
+            <img src={thumbnail_url} alt=""/>
             <div className="card-content">
                 <h3>{name}</h3>
 
                 <div className="card-info">
                     <div className="tag">
-                        <p>{tag}</p>
+                        {topics && topics.length ?  <p>{topics[0].name}</p> : null }
                     </div>
-                    <p className="time-text">{numberOfMinutes} minutes</p>
+                    { total_time_minutes ? <p className="time-text">{total_time_minutes} minutes</p> : null }
                 </div>
             </div>
         </div>
