@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import RecipeHeader from "../components/RecipeHeader.tsx";
 import Loading from "../components/Loading.tsx";
 import RecipeInfo from "../components/RecipeInfo.tsx";
+import Error from "../components/Error.tsx";
 
 export default function RecipePage() {
 
@@ -16,13 +17,17 @@ export default function RecipePage() {
 
     if (loading) return <Loading/>
     if (error) return <h1>{error}</h1>
-
+    if (!data) return <Error explanantion="Recipe not found"/>
     return (
         <>
             { data && (
                 <>
                 <RecipeHeader name={data.name} nutritionalFacts={data.nutrition}/>
-                <RecipeInfo instructions={data.instructions} imageUrl={data.thumbnail_url}/>
+                <RecipeInfo
+                    instructions={data.instructions}
+                    ingredients={data.sections[0].components}
+                    imageUrl={data.thumbnail_url}
+                />
                 </>
             )}
         </>

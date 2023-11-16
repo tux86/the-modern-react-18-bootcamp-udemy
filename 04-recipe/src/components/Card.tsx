@@ -8,6 +8,7 @@ export interface Recipe {
     total_time_minutes: number,
     nutrition: any,
     instructions: any
+    sections: any[]
 }
 
 interface CardProps {
@@ -19,7 +20,7 @@ const Card: React.FC<CardProps> = ({ recipe }) => {
     const {id, thumbnail_url, name, topics, total_time_minutes} = recipe
     const navigate = useNavigate()
     const navigateToRecipePage = () => {
-        navigate(`/recipe/${id}`)
+        navigate(`/recipe/${id}/instructions`)
     }
     return (
         <div className="card" key={id} onClick={navigateToRecipePage}>

@@ -3,12 +3,14 @@ import CardList from "../components/CardList.tsx";
 import {FetchRecipesFn, useFetchRecipes} from "../hooks/useFetchRecipes.ts";
 import Loading from "../components/Loading.tsx";
 import {useEffect} from "react";
+import {useSearchParams} from "react-router-dom";
 
 export default function HomePage() {
 
     const[fetchRecipes, {data,loading, error}] = useFetchRecipes()
+    const [searchParams] = useSearchParams()
     useEffect(() => {
-        fetchRecipes()
+        fetchRecipes(searchParams.get("search") || undefined)
     }, []);
 
 

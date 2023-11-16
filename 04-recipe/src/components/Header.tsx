@@ -1,11 +1,20 @@
 import {useState} from "react";
 import {FetchRecipesFn} from "../hooks/useFetchRecipes.ts";
+import {useSearchParams} from "react-router-dom";
 function Header({handleSearch}: {handleSearch: FetchRecipesFn}) {
     const [searchTerm, setSearchTerm] = useState("")
+    const [_, setSearchParams] = useSearchParams()
 
     const handleClick = () => {
         handleSearch(searchTerm)
+
+        if (searchTerm) {
+            setSearchParams({
+                search : searchTerm
+            })
+        }
     }
+
   return(
       <header className="main_header">
           <div className="text-container">
