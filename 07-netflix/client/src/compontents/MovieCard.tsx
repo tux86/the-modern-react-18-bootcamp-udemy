@@ -1,16 +1,18 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
+import {useNavigate} from "react-router-dom";
 
+const MovieCard = ({movie}: {movie: Movie}) => {
 
-const MovieCard = () => {
+    const {id, title, description, thumbnailUrl, duration,genre} = movie
 
-
+    const navigate = useNavigate()
     return (
         <div
             className="group bg-zinc-900 col-span relative h-[12vw] w-[24%]"
         >
             <img
-                src="https://beebom.com/wp-content/uploads/2018/06/Minecraft-Story-mode.jpg?w=730&h=487&crop=1&quality=75"
+                src={thumbnailUrl}
                 alt="Movie"
                 draggable={false}
                 className="
@@ -47,7 +49,7 @@ const MovieCard = () => {
       "
             >
                 <img
-                    src="https://beebom.com/wp-content/uploads/2018/06/Minecraft-Story-mode.jpg?w=730&h=487&crop=1&quality=75"
+                    src={thumbnailUrl}
                     alt="Movie"
                     draggable={false}
                     className="
@@ -85,13 +87,13 @@ const MovieCard = () => {
                             <ChevronDownIcon className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
                         </div>
                     </div>
-                    <p className="text-white font-semibold mt-4 text-2xl">Minecraft Film</p>
-                    <p className="text-gray-400">blabla</p>
+                    <p className="text-white font-semibold mt-4 text-2xl">{title}</p>
+                    <p className="text-gray-400">{description}</p>
                     <div className="flex flex-row mt-4 gap-2 items-center">
-                        <p className="text-white text-[10px] lg:text-sm">02h 04m</p>
+                        <p className="text-white text-[10px] lg:text-sm">{duration}</p>
                     </div>
                     <div className="flex flex-row items-center gap-2 mt-4 text-[8px] text-white lg:text-sm">
-                        <p>Jeux video</p>
+                        <p>{genre}</p>
                     </div>
                 </div>
             </div>

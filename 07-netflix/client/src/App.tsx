@@ -1,11 +1,11 @@
 import './App.css'
-import WatchPage from "./pages/WatchPage.tsx";
+import {Outlet} from "react-router-dom";
 
 function App() {
 
   return (
  <div>
-     <WatchPage/>
+     <Outlet/>
  </div>
   )
 }
